@@ -13,6 +13,7 @@ type Tree struct {
 	data   interface{}
 }
 
+// LL型，在node节点的左子树根节点的左子树上插入节点而破坏平衡->右旋
 func LL_rotate(node *Tree) *Tree {
 	var parent, son *Tree
 	parent = node.parent
@@ -39,6 +40,7 @@ func LL_rotate(node *Tree) *Tree {
 	return son
 }
 
+// RR型，在node节点的右子树根节点的右子树上插入节点而破坏平衡->左旋
 func RR_rotate(node *Tree) *Tree {
 	var parent, son *Tree
 	parent = node.parent
@@ -64,14 +66,16 @@ func RR_rotate(node *Tree) *Tree {
 	return son
 }
 
+//LR型，在node节点的左子树根节点的右子树上插入节点而破坏平衡->先左旋再右旋
 func LR_rotate(node *Tree) *Tree {
-	LL_rotate(node.lchild)
-	return RR_rotate(node)
+	RR_rotate(node.lchild)
+	return LL_rotate(node)
 }
 
+//LR型，在node节点的右子树根节点的左子树上插入节点而破坏平衡->先右旋再左旋
 func RL_rotate(node *Tree) *Tree {
-	RR_rotate(node.rchild)
-	return LL_rotate(node)
+	LL_rotate(node.rchild)
+	return RR_rotate(node)
 }
 
 func update_depth(node *Tree) {
@@ -135,17 +139,36 @@ func prePrintTree(node *Tree) {
 	if node == nil {
 		return
 	}
-	print(node.val, ",")
+	print("node.val=", node.val)
+	if node.lchild != nil {
+		print(" lchild.val=", node.lchild.val)
+	}
+	if node.rchild != nil {
+		print(" rchild.val=", node.rchild.val)
+	}
+	print("\n")
 	prePrintTree(node.lchild)
 	prePrintTree(node.rchild)
 }
 
 func main() {
-	var root *Tree
-	var val = []int{30, 20, 38, 15, 25, 35, 40}
-	for i := 0; i < len(val); i++ {
-		root = insertNode(root, val[i], struct{}{})
+	var root1, root2 *Tree
+	var val1 = []int{20, 35, 23, 40, 15, 30, 25, 50}
+	for i := 0; i < len(val1); i++ {
+		root1 = insertNode(root1, val1[i], struct{}{})
 	}
-	print("avl树前序遍历：")
-	prePrintTree(root)
+
+	print("root1 avl树前序遍历(len=", len(val1), ")：\n")
+	prePrintTree(root1)
+	print("root1 没有23这个节点\n")
+
+	print("--------------------分割线---------------------\n")
+
+	var val2 = []int{20, 35, 40, 23, 15, 30, 25, 50}
+	for i := 0; i < len(val2); i++ {
+		root2 = insertNode(root2, val2[i], struct{}{})
+	}
+	print("root2 avl树前序遍历(len=", len(val2), ")：\n")
+	prePrintTree(root2)
+	print("root2 有23这个节点")
 }
