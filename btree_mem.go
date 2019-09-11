@@ -4,8 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"go-demo/btree"
-	"math/rand"
-	"runtime"
 	"time"
 )
 
@@ -15,43 +13,77 @@ var (
 	gollrb = flag.Bool("llrb", false, "use llrb instead of btree")
 )
 
+//func main() {
+//	flag.Parse()
+//	vals := rand.Perm(*size)
+//	var t, v interface{}
+//	v = vals
+//	var stats runtime.MemStats
+//	for i := 0; i < 10; i++ {
+//		runtime.GC()
+//	}
+//	fmt.Println("-------- BEFORE ----------")
+//	runtime.ReadMemStats(&stats)
+//	fmt.Printf("MemStats: %+v\n", stats)
+//	start := time.Now()
+//	/*if *gollrb {
+//		tr := llrb.New()
+//		for _, v := range vals {
+//			tr.ReplaceOrInsert(llrb.Int(v))
+//		}
+//		t = tr // keep it around
+//	} else */{
+//		tr := btree.New(*degree)
+//		for _, v := range vals {
+//			tr.ReplaceOrInsert(btree.Int(v))
+//		}
+//		t = tr // keep it around
+//	}
+//	fmt.Printf("%v inserts in %v\n", *size, time.Since(start))
+//	fmt.Println("-------- AFTER ----------")
+//	runtime.ReadMemStats(&stats)
+//	fmt.Printf("MemStats: %+v\n", stats)
+//	for i := 0; i < 10; i++ {
+//		runtime.GC()
+//	}
+//	fmt.Println("-------- AFTER GC ----------")
+//	runtime.ReadMemStats(&stats)
+//	fmt.Printf("MemStats: %+v\n", stats)
+//	if t == v {
+//		fmt.Println("to make sure vals and tree aren't GC'd")
+//	}
+//}
+
 func main() {
-	flag.Parse()
-	vals := rand.Perm(*size)
-	var t, v interface{}
-	v = vals
-	var stats runtime.MemStats
-	for i := 0; i < 10; i++ {
-		runtime.GC()
-	}
-	fmt.Println("-------- BEFORE ----------")
-	runtime.ReadMemStats(&stats)
-	fmt.Printf("MemStats: %+v\n", stats)
 	start := time.Now()
-	/*if *gollrb {
-		tr := llrb.New()
-		for _, v := range vals {
-			tr.ReplaceOrInsert(llrb.Int(v))
-		}
-		t = tr // keep it around
-	} else */{
-		tr := btree.New(*degree)
-		for _, v := range vals {
-			tr.ReplaceOrInsert(btree.Int(v))
-		}
-		t = tr // keep it around
+	tr := btree.New(*degree)
+	for i := btree.Int(0); i < 10000000; i++ {
+		tr.ReplaceOrInsert(i)
 	}
-	fmt.Printf("%v inserts in %v\n", *size, time.Since(start))
-	fmt.Println("-------- AFTER ----------")
-	runtime.ReadMemStats(&stats)
-	fmt.Printf("MemStats: %+v\n", stats)
-	for i := 0; i < 10; i++ {
-		runtime.GC()
-	}
-	fmt.Println("-------- AFTER GC ----------")
-	runtime.ReadMemStats(&stats)
-	fmt.Printf("MemStats: %+v\n", stats)
-	if t == v {
-		fmt.Println("to make sure vals and tree aren't GC'd")
-	}
+	fmt.Println("len:       ", tr.Len())
+	fmt.Println("get3:      ", tr.Get(btree.Int(3)))
+	fmt.Println("get100:    ", tr.Get(btree.Int(100)))
+	fmt.Println("del4:      ", tr.Delete(btree.Int(4)))
+	fmt.Println("del100:    ", tr.Delete(btree.Int(100)))
+	fmt.Println("replace5:  ", tr.ReplaceOrInsert(btree.Int(5)))
+	fmt.Println("replace100:", tr.ReplaceOrInsert(btree.Int(100)))
+	fmt.Println("min:       ", tr.Min())
+	fmt.Println("delmin:    ", tr.DeleteMin())
+	fmt.Println("max:       ", tr.Max())
+	fmt.Println("delmax:    ", tr.DeleteMax())
+	fmt.Println("len:       ", tr.Len())
+	fmt.Println("耗时:", time.Since(start))
+	// Output:
+	// len:        10
+	// get3:       3
+	// get100:     <nil>
+	// del4:       4
+	// del100:     <nil>
+	// replace5:   5
+	// replace100: <nil>
+	// min:        0
+	// delmin:     0
+	// max:        100
+	// delmax:     100
+	// len:        8
 }

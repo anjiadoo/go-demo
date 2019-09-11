@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 type Tree struct {
@@ -159,12 +160,12 @@ func prePrintTree(node *Tree) {
 
 func main() {
 	var root *Tree
-	var val = []int{20, 35, 23, 40, 15, 30, 25, 50}
-	fmt.Println(val)
-	for i := 0; i < len(val); i++ {
-		root = insertNode(root, val[i], struct{}{})
+	vals := rand.Perm(10)
+	fmt.Println(vals)
+	for i := 0; i < len(vals); i++ {
+		root = insertNode(root, vals[i], struct{}{})
 	}
 
-	print("root avl树前序遍历(len=", len(val), ")：\n")
+	print("root avl树前序遍历(len=", len(vals), ")：\n")
 	prePrintTree(root)
 }
