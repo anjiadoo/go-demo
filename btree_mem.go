@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"go-demo/btree"
+	"sync"
 	"time"
 )
 
@@ -56,10 +57,32 @@ var (
 
 func main() {
 	start := time.Now()
+	// 并发写是不安全的
 	tr := btree.New(*degree)
-	for i := btree.Int(0); i < 10000000; i++ {
-		tr.ReplaceOrInsert(i)
-	}
+	wg := sync.WaitGroup{}
+	wg.Add(3)
+	go func() {
+		for i := btree.Int(0); i < 1000; i++ {
+			tr.ReplaceOrInsert(i)
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		for i := btree.Int(1000); i < 2000; i++ {
+			tr.ReplaceOrInsert(i)
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		for i := btree.Int(2000); i < 3000; i++ {
+			tr.ReplaceOrInsert(i)
+		}
+		wg.Done()
+	}()
+	wg.Wait()
+
 	fmt.Println("len:       ", tr.Len())
 	fmt.Println("get3:      ", tr.Get(btree.Int(3)))
 	fmt.Println("get100:    ", tr.Get(btree.Int(100)))

@@ -158,6 +158,29 @@ func prePrintTree(node *Tree) {
 	prePrintTree(node.rchild)
 }
 
+//------------------------------------
+type Item interface {
+	Less(than Item) bool
+}
+
+type Int int
+
+func (x Int) Less(than Item) bool {
+	return x < than.(Int)
+}
+
+type Uint32 uint32
+
+func (x Uint32) Less(than Item) bool {
+	return x < than.(Uint32)
+}
+
+func less(root, tmp Item) bool {
+	return root.Less(tmp)
+}
+
+//------------------------------------
+
 func main() {
 	var root *Tree
 	vals := rand.Perm(10)
