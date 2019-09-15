@@ -1,9 +1,4 @@
-package main
-
-import (
-	"fmt"
-	"math/rand"
-)
+package avltree
 
 type Tree struct {
 	parent *Tree
@@ -15,7 +10,7 @@ type Tree struct {
 }
 
 // LL型，在node节点的左子树根节点的左子树上插入节点而破坏平衡->右旋
-func LL_rotate(node *Tree) *Tree {
+func llRotate(node *Tree) *Tree {
 	var parent, son *Tree
 	parent = node.parent
 	son = node.lchild
@@ -42,7 +37,7 @@ func LL_rotate(node *Tree) *Tree {
 }
 
 // RR型，在node节点的右子树根节点的右子树上插入节点而破坏平衡->左旋
-func RR_rotate(node *Tree) *Tree {
+func rrRotate(node *Tree) *Tree {
 	var parent, son *Tree
 	parent = node.parent
 	son = node.rchild
@@ -76,15 +71,15 @@ func max(a, b int) int {
 }
 
 //LR型，在node节点的左子树根节点的右子树上插入节点而破坏平衡->先左旋再右旋
-func LR_rotate(node *Tree) *Tree {
-	node.lchild = RR_rotate(node.lchild)
-	return LL_rotate(node)
+func lrRotate(node *Tree) *Tree {
+	node.lchild = rrRotate(node.lchild)
+	return llRotate(node)
 }
 
-//LR型，在node节点的右子树根节点的左子树上插入节点而破坏平衡->先右旋再左旋
-func RL_rotate1(node *Tree) *Tree {
-	node.rchild = LL_rotate(node.rchild)
-	return RR_rotate(node)
+//RL型，在node节点的右子树根节点的左子树上插入节点而破坏平衡->先右旋再左旋
+func rlRotate(node *Tree) *Tree {
+	node.rchild = llRotate(node.rchild)
+	return rrRotate(node)
 }
 
 func update_depth(node *Tree) {
@@ -108,7 +103,7 @@ func is_balance(node *Tree) int {
 	return get_balance(node.lchild) - get_balance(node.rchild)
 }
 
-func insertNode(node *Tree, val int, data interface{}) *Tree {
+func InsertNode(node *Tree, val int, data interface{}) *Tree {
 	if node == nil {
 		node = &Tree{
 			parent: nil,
@@ -119,21 +114,21 @@ func insertNode(node *Tree, val int, data interface{}) *Tree {
 			data:   data,
 		}
 	} else if val < node.val {
-		node.lchild = insertNode(node.lchild, val, data)
+		node.lchild = InsertNode(node.lchild, val, data)
 		if is_balance(node) == 2 {
 			if val < node.lchild.val {
-				node = LL_rotate(node)
+				node = llRotate(node)
 			} else {
-				node = LR_rotate(node)
+				node = lrRotate(node)
 			}
 		}
 	} else if val > node.val {
-		node.rchild = insertNode(node.rchild, val, data)
+		node.rchild = InsertNode(node.rchild, val, data)
 		if is_balance(node) == -2 {
 			if val > node.rchild.val {
-				node = RR_rotate(node)
+				node = rrRotate(node)
 			} else {
-				node = RL_rotate1(node)
+				node = rlRotate(node)
 			}
 		}
 	}
@@ -142,7 +137,7 @@ func insertNode(node *Tree, val int, data interface{}) *Tree {
 	return node
 }
 
-func prePrintTree(node *Tree) {
+func PrePrintTree(node *Tree) {
 	if node == nil {
 		return
 	}
@@ -154,8 +149,8 @@ func prePrintTree(node *Tree) {
 		print(" rchild.val=", node.rchild.val)
 	}
 	print("\n")
-	prePrintTree(node.lchild)
-	prePrintTree(node.rchild)
+	PrePrintTree(node.lchild)
+	PrePrintTree(node.rchild)
 }
 
 //------------------------------------
@@ -173,22 +168,4 @@ type Uint32 uint32
 
 func (x Uint32) Less(than Item) bool {
 	return x < than.(Uint32)
-}
-
-func less(root, tmp Item) bool {
-	return root.Less(tmp)
-}
-
-//------------------------------------
-
-func main() {
-	var root *Tree
-	vals := rand.Perm(10)
-	fmt.Println(vals)
-	for i := 0; i < len(vals); i++ {
-		root = insertNode(root, vals[i], struct{}{})
-	}
-
-	print("root avl树前序遍历(len=", len(vals), ")：\n")
-	prePrintTree(root)
 }
