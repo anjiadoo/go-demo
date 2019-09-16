@@ -1,6 +1,6 @@
 package bptree
 
-const M = 400
+const M = 4
 const INT_MAX = int(^uint(0) >> 1)
 const INT_MIN = ^INT_MAX
 const LIMIT_M_2 = (M + 1) / 2
@@ -24,7 +24,7 @@ type BPlusFullNode struct {
 type BPlusTree struct {
 	keyMax int
 	Root   *BPlusFullNode
-	ptr    *BPlusFullNode
+	Ptr    *BPlusFullNode
 }
 
 func mallocNewNode(isLeaf bool) *BPlusFullNode {
@@ -67,7 +67,7 @@ func mallocNewLeaf() *BPlusLeafNode {
 /* 初始化根结点 */
 func (tree *BPlusTree) Initialize() {
 	T := mallocNewNode(true)
-	tree.ptr = T
+	tree.Ptr = T
 	tree.Root = T
 }
 
@@ -104,26 +104,24 @@ func findMostRight(P Position) Position {
 }
 
 /* 寻找一个兄弟节点，其存储的关键字未满，若左右都满返回nil */
-func findSibling(Parent Position, i int) Position {
+func findSibling(Parent Position, posAtParent int) Position {
 	var Sibling Position
 	var upperLimit int
 	upperLimit = M
 	Sibling = nil
-	if i == 0 {
+	if posAtParent == 0 {
 		if Parent.Children[1].KeyNum < upperLimit {
-
 			Sibling = Parent.Children[1]
 		}
-	} else if (Parent.Children[i-1].KeyNum < upperLimit) {
-		Sibling = Parent.Children[i-1]
-	} else if (i+1 < Parent.KeyNum && Parent.Children[i+1].KeyNum < upperLimit) {
-		Sibling = Parent.Children[i+1]
+	} else if (Parent.Children[posAtParent-1].KeyNum < upperLimit) {
+		Sibling = Parent.Children[posAtParent-1]
+	} else if (posAtParent+1 < Parent.KeyNum && Parent.Children[posAtParent+1].KeyNum < upperLimit) {
+		Sibling = Parent.Children[posAtParent+1]
 	}
 	return Sibling
 }
 
 /* 查找兄弟节点，其关键字数大于M/2 ;没有返回nil j用来标识是左兄还是右兄*/
-
 func findSiblingKeyNum_M_2(Parent Position, i int, j *int) Position {
 	var lowerLimit int
 	var Sibling Position
@@ -149,40 +147,42 @@ func findSiblingKeyNum_M_2(Parent Position, i int, j *int) Position {
 	return Sibling
 }
 
-/* 当要对X插入data的时候，i是X在Parent的位置，insertIndex是data要插入的位置，j可由查找得到
-   当要对Parent插入X节点的时候，posAtParent是要插入的位置，Key和j的值没有用
-*/
-func (tree *BPlusTree) insertElement(isData bool, Parent Position, X Position, Key int, posAtParent int, insertIndex int, data int) Position {
+/**
+ * 当要对beInsertedElement插入data的时候，posAtParent是beInsertedElement在Parent的位置，insertIndex是data要插入的位置，
+ * j可由查找得到,当要对Parent插入beInsertedElement节点的时候，posAtParent是要插入的位置，Key和j的值没有用
+ */
+func (tree *BPlusTree) insertElement(isData bool, Parent Position, beInsertedElement Position, Key int, posAtParent int, insertIndex int, data int) Position {
 
 	var k int
 	if (isData) {
 		/* 插入data*/
-		k = X.KeyNum - 1
+		k = beInsertedElement.KeyNum - 1 //lastIdx
 		for (k >= insertIndex) {
-			X.Key[k+1] = X.Key[k]
-			X.LeafNode.Datas[k+1] = X.LeafNode.Datas[k]
+			beInsertedElement.Key[k+1] = beInsertedElement.Key[k]
+			beInsertedElement.LeafNode.Datas[k+1] = beInsertedElement.LeafNode.Datas[k]
 			k--
 		}
 
-		X.Key[insertIndex] = Key
-		X.LeafNode.Datas[insertIndex] = data
+		beInsertedElement.Key[insertIndex] = Key
+		beInsertedElement.LeafNode.Datas[insertIndex] = data
 		if (Parent != nil) {
-			Parent.Key[posAtParent] = X.Key[0] //可能min_key 已发生改变
+			Parent.Key[posAtParent] = beInsertedElement.Key[0] //可能min_key已发生改变
 		}
 
-		X.KeyNum++
+		beInsertedElement.KeyNum++
 
 	} else {
-		/* 插入节点 */
-		/* 对树的叶子节点进行链接 */
-		if (X.isLeaf == true) {
+		/* 插入节点，并对树的叶子节点进行链接 */
+		if (beInsertedElement.isLeaf == true) {
 			if (posAtParent > 0) {
-				Parent.Children[posAtParent-1].LeafNode.Next = X
+				/* 链接前驱节点 */
+				Parent.Children[posAtParent-1].LeafNode.Next = beInsertedElement
 			}
-			X.LeafNode.Next = Parent.Children[posAtParent]
-			//更新叶子指针
-			if X.Key[0] <= tree.ptr.Key[0] {
-				tree.ptr = X
+			/* 链接后继节点 */
+			beInsertedElement.LeafNode.Next = Parent.Children[posAtParent]
+
+			if beInsertedElement.Key[0] <= tree.Ptr.Key[0] { //更新叶子指针
+				tree.Ptr = beInsertedElement
 			}
 		}
 
@@ -192,17 +192,17 @@ func (tree *BPlusTree) insertElement(isData bool, Parent Position, X Position, K
 			Parent.Key[k+1] = Parent.Key[k]
 			k--
 		}
-		Parent.Key[posAtParent] = X.Key[0]
-		Parent.Children[posAtParent] = X
+		Parent.Key[posAtParent] = beInsertedElement.Key[0]
+		Parent.Children[posAtParent] = beInsertedElement
 		Parent.KeyNum++
 	}
 
-	return X
+	return beInsertedElement
 }
 
-/*
-	两个参数X posAtParent 有些重复 posAtParent可以通过X的最小关键字查找得到
-*/
+/**
+ * 两个参数X posAtParent 有些重复 posAtParent可以通过X的最小关键字查找得到
+ */
 func (tree *BPlusTree) removeElement(isData bool, Parent Position, X Position, posAtParent int, deleteIndex int) Position {
 
 	var k, keyNum int
@@ -236,8 +236,8 @@ func (tree *BPlusTree) removeElement(isData bool, Parent Position, X Position, p
 			k++
 		}
 
-		if X.Key[0] == tree.ptr.Key[0] { // refresh ptr
-			tree.ptr = Parent.Children[0]
+		if X.Key[0] == tree.Ptr.Key[0] { // refresh Ptr
+			tree.Ptr = Parent.Children[0]
 		}
 		Parent.Children[Parent.KeyNum-1] = nil
 		Parent.Key[Parent.KeyNum-1] = INT_MIN
@@ -248,8 +248,10 @@ func (tree *BPlusTree) removeElement(isData bool, Parent Position, X Position, p
 	return X
 }
 
-/* Src和Dst是两个相邻的节点，posAtParent是Src在Parent中的位置；
-将Src的元素移动到Dst中 ,eNum是移动元素的个数*/
+/**
+ * Src和Dst是两个相邻的节点，posAtParent是Src在Parent中的位置；
+ * 将Src的元素移动到Dst中 ,eNum是移动元素的个数
+ */
 func (tree *BPlusTree) moveElement(src Position, dst Position, parent Position, posAtParent int, eNum int) Position {
 	var TmpKey, data int
 	var Child Position
@@ -267,7 +269,7 @@ func (tree *BPlusTree) moveElement(src Position, dst Position, parent Position, 
 		if (src.isLeaf == false) {
 			for (j < eNum) {
 				Child = src.Children[src.KeyNum-1]
-				tree.removeElement(false, src, Child, src.KeyNum-1, INT_MIN)        //每删除一个节点keyNum也自动减少1 队尾删
+				tree.removeElement(false, src, Child, src.KeyNum-1, INT_MIN)        //每删除一个节点keyNum也自动减少1，队尾删
 				tree.insertElement(false, dst, Child, INT_MIN, 0, INT_MIN, INT_MIN) //队头加
 				j++
 			}
@@ -281,14 +283,17 @@ func (tree *BPlusTree) moveElement(src Position, dst Position, parent Position, 
 			}
 
 		}
-
+		// todo:看到这里
 		parent.Key[posAtParent+1] = dst.Key[0]
 		/* 将树叶节点重新连接 */
 		if (src.KeyNum > 0) {
 			findMostRight(src).LeafNode.Next = findMostLeft(dst) //似乎不需要重连，src的最右本身就是dst最左的上一元素
 		} else {
 			if src.isLeaf == true {
-				parent.Children[posAtParent-1 ].LeafNode.Next = dst
+				if posAtParent == 0 {
+					posAtParent = 1
+				}
+				parent.Children[posAtParent-1 ].LeafNode.Next = dst //todo:index out of range
 			}
 			//  此种情况肯定是merge merge中有实现先移动再删除操作
 			//tree.removeElement(false ,parent.parent，parent ,parentIndex,INT_MIN )
@@ -327,8 +332,8 @@ func (tree *BPlusTree) moveElement(src Position, dst Position, parent Position, 
 	return parent
 }
 
-//i为节点X的位置
-func (tree *BPlusTree) splitNode(Parent Position, beSplitedNode Position, i int) Position {
+//posAtParent为节点beSplitedNode在Parent中的位置
+func (tree *BPlusTree) splitNode(Parent Position, beSplitedNode Position, posAtParent int) Position {
 	var j, k, keyNum int
 	var NewNode Position
 
@@ -344,7 +349,7 @@ func (tree *BPlusTree) splitNode(Parent Position, beSplitedNode Position, i int)
 	for (j < keyNum) {
 		if (beSplitedNode.isLeaf == false) { //Internal node
 			NewNode.Children[k] = beSplitedNode.Children[j]
-			beSplitedNode.Children[j] = nil
+			beSplitedNode.Children[j] = nil //reset
 		} else {
 			NewNode.LeafNode.Datas[k] = beSplitedNode.LeafNode.Datas[j]
 			beSplitedNode.LeafNode.Datas[j] = INT_MIN
@@ -358,19 +363,21 @@ func (tree *BPlusTree) splitNode(Parent Position, beSplitedNode Position, i int)
 	}
 
 	if (Parent != nil) {
-		tree.insertElement(false, Parent, NewNode, INT_MIN, i+1, INT_MIN, INT_MIN)
-		// parent > limit 时的递归split recurvie中实现
+		tree.insertElement(false, Parent, NewNode, INT_MIN, posAtParent+1, INT_MIN, INT_MIN)
 	} else {
 		/* 如果X是根，那么创建新的根并返回 */
 		Parent = mallocNewNode(false)
 		tree.insertElement(false, Parent, beSplitedNode, INT_MIN, 0, INT_MIN, INT_MIN)
 		tree.insertElement(false, Parent, NewNode, INT_MIN, 1, INT_MIN, INT_MIN)
 		tree.Root = Parent
+
+		/**
+		 * 为什么返回一个beSplitedNode一个Parent?
+		 * 在方法外层，split后需要更新Parent的min_key，当树只有一层的时候，如果返回beSplitedNode节点更新根节点的min_key会出错
+		 */
 		return Parent
 	}
-
 	return beSplitedNode
-	// 为什么返回一个X一个Parent?
 }
 
 /* 合并节点,X少于M/2关键字，S有大于或等于M/2个关键字*/
@@ -390,6 +397,12 @@ func (tree *BPlusTree) mergeNode(Parent Position, X Position, S Position, i int)
 	return Parent
 }
 
+/**
+ * beInsertedElement@插入节点
+ * Key@插入的key
+ * posAtParent@父节点所在的位置
+ * data@存储的数据
+ */
 func (tree *BPlusTree) recursiveInsert(beInsertedElement Position, Key int, posAtParent int, Parent Position, data int) (Position, bool) {
 	var InsertIndex, upperLimit int
 	var Sibling Position
@@ -404,40 +417,39 @@ func (tree *BPlusTree) recursiveInsert(beInsertedElement Position, Key int, posA
 		}
 		InsertIndex++
 	}
-	//key必须大于被插入节点的最小元素，才能插入到此节点，故需回退一步
+	//key必须大于被插入节点的最小元素且小于后继节点的最小元素，才能插入到此节点，故需回退一步
 	if (InsertIndex != 0 && beInsertedElement.isLeaf == false) {
 		InsertIndex--
 	}
 
-	/* 树叶 */
 	if (beInsertedElement.isLeaf == true) {
 		beInsertedElement = tree.insertElement(true, Parent, beInsertedElement, Key, posAtParent, InsertIndex, data) //返回叶子节点
-		/* 内部节点 */
 	} else {
-		beInsertedElement.Children[InsertIndex], result = tree.recursiveInsert(beInsertedElement.Children[InsertIndex], Key, InsertIndex, beInsertedElement, data)
 		//更新parent发生在split时
+		beInsertedElement.Children[InsertIndex], result = tree.recursiveInsert(beInsertedElement.Children[InsertIndex], Key, InsertIndex, beInsertedElement, data)
 	}
 
 	/* 调整节点 */
 	upperLimit = M
 	if (beInsertedElement.KeyNum > upperLimit) {
-		/* 根 */
-		if (Parent == nil) {
+
+		if (Parent == nil) { //根节点
 			/* 分裂节点 */
 			beInsertedElement = tree.splitNode(Parent, beInsertedElement, posAtParent)
 		} else {
 			Sibling = findSibling(Parent, posAtParent)
 			if (Sibling != nil) {
-				/* 将T的一个元素（Key或者Child）移动的Sibing中 */
+				/* 将beInsertedElement的一个元素（Key或者Child）移动的Sibling中 */
 				tree.moveElement(beInsertedElement, Sibling, Parent, posAtParent, 1)
 			} else {
 				/* 分裂节点 */
 				beInsertedElement = tree.splitNode(Parent, beInsertedElement, posAtParent)
 			}
 		}
-
 	}
+
 	if (Parent != nil) {
+		/* 插入节点的最小值可能已经变化，需要重新设置 */
 		Parent.Key[posAtParent] = beInsertedElement.Key[0]
 	}
 
@@ -451,7 +463,6 @@ func (tree *BPlusTree) Insert(Key int, data int) (Position, bool) {
 }
 
 func (tree *BPlusTree) recursiveRemove(beRemovedElement Position, Key int, posAtParent int, Parent Position) (Position, bool) {
-
 	var deleteIndex int
 	var Sibling Position
 	var NeedAdjust bool
