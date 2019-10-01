@@ -1,17 +1,30 @@
 package main
 
 import (
-	"fmt"
 	"go-demo/bptree"
+
+	"fmt"
 	"time"
 )
+
+/**
+ * ----------------------------------------------------------------------------
+ * -----------------------------[1,9,0,0,0]------------------------------------
+ * ---------------------------------/-\----------------------------------------
+ * -------------------------------/-----\--------------------------------------
+ * ---------------------[1,5,0,0,]-----[9,13,17,0]-----------------------------
+ * ----------------------/\---------------/|\----------------------------------
+ * --------[1,2,3,4]->[5,6,7,8]---->[9,10,11,12]->[13,14,15,16]->[17,18,19,20]-
+ * ----------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------
+ */
 
 func main() {
 	var tree bptree.BPlusTree
 	(&tree).Initialize()
 	var i int = 1
-	fmt.Println("st=", time.Now().Nanosecond())
-	for i <= 10000 {
+	fmt.Println("st=", time.Now())
+	for i <= 20 {
 		_, result := tree.Insert(i, i*i)
 		if result == false {
 			fmt.Println("数据已存在")
@@ -19,7 +32,7 @@ func main() {
 		i++
 	}
 
-	fmt.Println("et=", time.Now().Nanosecond())
+	fmt.Println("et=", time.Now())
 	//tree.Remove(9)
 	//tree.Remove(10)
 	//tree.Remove(11)
@@ -44,15 +57,15 @@ func main() {
 	//	fmt.Println("Not Found Key=", find)
 	//}
 
-	////遍历结点元素
-	//fmt.Printf("%+v\n", tree.Root)
-	//fmt.Println("---------------------------------------")
-	//fmt.Printf("%+v\n", tree.Root.Children[0])
-	//fmt.Printf("%+v\n", tree.Root.Children[0].Children[0])
-	//fmt.Printf("%+v\n", tree.Root.Children[0].Children[1])
-	//fmt.Println("---------------------------------------")
-	//fmt.Printf("%+v\n", tree.Root.Children[1])
-	//fmt.Printf("%+v\n", tree.Root.Children[1].Children[0])
-	//fmt.Printf("%+v\n", tree.Root.Children[1].Children[1])
+	//遍历结点元素
+	fmt.Printf("%+v\n", tree.Root)
+	fmt.Println("---------------------------------------")
+	fmt.Printf("%+v\n", tree.Root.Children[0])
+	fmt.Printf("%+v\n", tree.Root.Children[0].Children[0])
+	fmt.Printf("%+v\n", tree.Root.Children[0].Children[1])
+	fmt.Println("---------------------------------------")
+	fmt.Printf("%+v\n", tree.Root.Children[1])
+	fmt.Printf("%+v\n", tree.Root.Children[1].Children[0])
+	fmt.Printf("%+v\n", tree.Root.Children[1].Children[1])
 	//fmt.Printf("%+v\n", tree.Root.Children[1].Children[2])
 }

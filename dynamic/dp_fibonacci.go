@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+//不带备忘录的递归调用
 func FibonacciSequence(n int) int {
 	if n == 1 || n == 2 {
 		return 1
@@ -20,7 +21,8 @@ func dpm(memo []int, n int) int {
 	return memo[n]
 }
 
-func dynamicProgrammingMemo(n int) int {
+//带备忘录的递归调用
+func FibonacciSequenceMemo(n int) int {
 	if n < 1 {
 		return 0
 	}
@@ -31,7 +33,7 @@ func dynamicProgrammingMemo(n int) int {
 	return dpm(memo, n)
 }
 
-func dynamicProgramming(n int) int {
+func FibonacciSequenceDP(n int) int {
 	if n < 2 {
 		return n
 	}
@@ -52,12 +54,12 @@ func main() {
 	fmt.Println("------------|---------------------------|-------------------------------")
 
 	//st1 := time.Now()
-	//sum1 := dynamicProgrammingMemo(num)
+	//sum1 := FibonacciSequenceMemo(num)
 	//et1 := time.Since(st1)
 	//fmt.Println("\t", num, "\t|\t", sum1, "\t\t\t|\t\t", et1)
 
 	st3 := time.Now()
-	sum3 := dynamicProgramming(num)
+	sum3 := FibonacciSequenceDP(num)
 	et3 := time.Since(st3)
 	fmt.Println("\t", num, "\t|\t", sum3, "\t\t|\t\t", et3)
 
