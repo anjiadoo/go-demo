@@ -1,4 +1,4 @@
-package divide
+package main
 
 import "fmt"
 
