@@ -1,4 +1,4 @@
-package main
+package divide
 
 import "fmt"
 
@@ -22,8 +22,8 @@ func fn(n int) int {
 
 func main() {
 	var x float64 = 2
-	var n int = 10
+	var n int = 1000
 
 	fmt.Println(pow(x, n))
-	fmt.Println(fn(n))
+	//fmt.Println(fn(n))
 }

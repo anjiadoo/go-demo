@@ -6,11 +6,16 @@ func getNext(tr string) []int {
 	var i, j, leg int
 	T := []rune(tr)
 	var next = make([]int, len(T))
-
 	next[0] = -1
+
+	/* 依次求next[j] */
 	for j = 1; j < len(T); j++ {
+
+		/* 相等子串的最大长度为j-1 */
 		for leg = j - 1; leg >= 1; leg-- {
 			for i = 0; i < leg; i++ {
+
+				/* 依次比较T[0]-T[k-1] = T[j-k]-T[j-1] */
 				if T[i] != T[j-leg+i] {
 					break
 				}
@@ -20,7 +25,7 @@ func getNext(tr string) []int {
 				break
 			}
 		}
-		if leg < 1 {
+		if leg < 1 { /* 无相等子串 */
 			next[j] = 0
 		}
 	}
