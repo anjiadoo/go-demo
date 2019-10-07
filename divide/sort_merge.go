@@ -35,6 +35,7 @@ func merge(r []int, begin, mid, end int) []int {
 	return tmp
 }
 
+/* 归并排序 */
 func mergeSort(arr []int, begin, end int) {
 	if begin == end {
 		return

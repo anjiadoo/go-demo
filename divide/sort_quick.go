@@ -26,6 +26,7 @@ func partition(arr []int, fir, end int) int {
 	return i
 }
 
+/* 快速排序 */
 func quickSort(arr []int, fir, end int) []int {
 	var pivot int
 	if fir < end {
