@@ -1,6 +1,6 @@
 package bptree
 
-const M = 400
+const M = 4
 const INT_MAX = int(^uint(0) >> 1)
 const INT_MIN = ^INT_MAX
 const LIMIT_M_2 = (M + 1) / 2

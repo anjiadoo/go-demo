@@ -10,6 +10,7 @@ func max(a, b int) int {
 	}
 }
 
+//只允许买入卖出一次
 func singleMaxProfit(prices []int) (int, int) {
 	if len(prices) <= 1 {
 		return -1, 0
@@ -25,6 +26,7 @@ func singleMaxProfit(prices []int) (int, int) {
 	return idx + 1, sell
 }
 
+//允许买入卖出再买入卖出
 func secondMaxProfit(prices []int) (int) {
 	if len(prices) <= 1 {
 		return 0
@@ -33,6 +35,8 @@ func secondMaxProfit(prices []int) (int) {
 	for i := 0; i < len(prices); i++ {
 		fstBuy = max(fstBuy, -prices[i])
 		fstSell = max(fstSell, prices[i]+fstBuy)
+
+		//第二次买入受第一次卖出的影响
 		secBuy = max(secBuy, fstSell-prices[i])
 		secSell = max(secSell, prices[i]+secBuy)
 	}
