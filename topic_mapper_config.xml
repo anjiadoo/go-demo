@@ -1,0 +1,385 @@
+<?xml version="1.0" ?>
+
+<Event>
+    <!-- 登陆事件 -->
+    <Topic topicID="1" topic="TaskEvent.Login" chanName="" desc="登陆事件">
+        <SubTopic subTopic="TaskEvent.Login" firstField="" secondField="" desc="每日登陆/连续登陆/累计登陆"/>
+    </Topic>
+
+    <!-- 签到事件 -->
+    <Topic topicID="2" topic="TaskEvent.SignIn" chanName="" desc="签到事件">
+        <SubTopic subTopic="TaskEvent.SignIn" firstField="" secondField="" desc="每日签到"/>
+    </Topic>
+
+    <!-- 参加比赛事件 -->
+    <Topic topicID="3" topic="TaskEvent.JoinMatch" chanName="" desc="参加比赛事件">
+        <SubTopic subTopic="TaskEvent.JoinMatch.AnyMatch.AllGame" firstField="AnyMatch" secondField="AllGame"
+                  desc="参加任意比赛的全部游戏"/>
+        <SubTopic subTopic="TaskEvent.JoinMatch.RegularMatch.CardGame" firstField="RegularMatch" secondField="CardGame"
+                  desc="参加定时赛的牌类游戏"/>
+        <SubTopic subTopic="TaskEvent.JoinMatch.CycleMatch.MahjongGame" firstField="CycleMatch"
+                  secondField="MahjongGame" desc=""/>
+        <SubTopic subTopic="TaskEvent.JoinMatch.SeriesMatch.ChessGame" firstField="SeriesMatch" secondField="ChessGame"
+                  desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.JoinMatch.MemberMatch.LandlordSanrenddz" firstField="MemberMatch"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.JoinMatch.MemberMatch.ChineseChess" firstField="MemberMatch"
+                  secondField="ChineseChess" desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.JoinMatch.MemberMatch.MahjongHnxinxiang" firstField="MemberMatch"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.JoinMatch.MemberMatch.MahjongLndalianqh" firstField="MemberMatch"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 进入奖圈事件 -->
+    <Topic topicID="4" topic="TaskEvent.AwardRing" chanName="" desc="进入奖圈事件">
+        <SubTopic subTopic="TaskEvent.AwardRing.AllGame" firstField="AllGame" secondField="" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.AwardRing.CardGame" firstField="CardGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.AwardRing.MahjongGame" firstField="MahjongGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.AwardRing.ChessGame" firstField="ChessGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.AwardRing.OthGame" firstField="OthGame" secondField="" desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.AwardRing.LandlordSanrenddz" firstField="MemberMatch"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.AwardRing.ChineseChess" firstField="MemberMatch" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.AwardRing.MahjongHnxinxiang" firstField="MemberMatch"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.AwardRing.MahjongLndalianqh" firstField="MemberMatch"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 复活事件 -->
+    <Topic topicID="5" topic="TaskEvent.Revival" chanName="" desc="复活事件">
+        <SubTopic subTopic="TaskEvent.Revival.AllGame" firstField="AllGame" secondField="" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.Revival.CardGame" firstField="CardGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.Revival.MahjongGame" firstField="MahjongGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.Revival.ChessGame" firstField="ChessGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.Revival.OthGame" firstField="OthGame" secondField="" desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.Revival.LandlordSanrenddz" firstField="MemberMatch"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.Revival.ChineseChess" firstField="MemberMatch" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.Revival.MahjongHnxinxiang" firstField="MemberMatch"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.Revival.MahjongLndalianqh" firstField="MemberMatch"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 夺冠事件 -->
+    <Topic topicID="6" topic="TaskEvent.TakeCrown" chanName="" desc="夺冠事件">
+        <SubTopic subTopic="TaskEvent.TakeCrown.AllGame" firstField="AllGame" secondField="" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.TakeCrown.CardGame" firstField="CardGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.TakeCrown.MahjongGame" firstField="MahjongGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.TakeCrown.ChessGame" firstField="ChessGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.TakeCrown.OthGame" firstField="OthGame" secondField="" desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.TakeCrown.LandlordSanrenddz" firstField="MemberMatch"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.TakeCrown.ChineseChess" firstField="MemberMatch" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.TakeCrown.MahjongHnxinxiang" firstField="MemberMatch"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.TakeCrown.MahjongLndalianqh" firstField="MemberMatch"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 围观事件 -->
+    <Topic topicID="7" topic="TaskEvent.Observer" chanName="" desc="围观事件">
+        <SubTopic subTopic="TaskEvent.Observer.AnyMatch" firstField="AnyMatch" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 参加匹配赛事件 -->
+    <Topic topicID="8" topic="TaskEvent.JoinMatching" chanName="" desc="参加匹配赛事件">
+        <SubTopic subTopic="TaskEvent.JoinMatching.AllGame" firstField="AllGame" secondField="" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.JoinMatching.CardGame" firstField="CardGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.JoinMatching.MahjongGame" firstField="MahjongGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.JoinMatching.ChessGame" firstField="ChessGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.JoinMatching.OthGame" firstField="OthGame" secondField="" desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.JoinMatching.LandlordSanrenddz" firstField="MemberMatch"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.JoinMatching.ChineseChess" firstField="MemberMatch" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.JoinMatching.MahjongHnxinxiang" firstField="MemberMatch"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.JoinMatching.MahjongLndalianqh" firstField="MemberMatch"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 匹配赛胜利事件 -->
+    <Topic topicID="9" topic="TaskEvent.MatchingWin" chanName="" desc="匹配赛胜利事件">
+        <SubTopic subTopic="TaskEvent.MatchingWin.AllGame" firstField="AllGame" secondField="" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.MatchingWin.CardGame" firstField="CardGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MatchingWin.MahjongGame" firstField="MahjongGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MatchingWin.ChessGame" firstField="ChessGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MatchingWin.OthGame" firstField="OthGame" secondField="" desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.MatchingWin.LandlordSanrenddz" firstField="MemberMatch"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.MatchingWin.ChineseChess" firstField="MemberMatch" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.MatchingWin.MahjongHnxinxiang" firstField="MemberMatch"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.MatchingWin.MahjongLndalianqh" firstField="MemberMatch"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 匹配赛连胜事件 -->
+    <Topic topicID="10" topic="TaskEvent.MatchingSeriesWin" chanName="" desc="匹配赛连胜事件">
+        <SubTopic subTopic="TaskEvent.MatchingSeriesWin.AllGame" firstField="AllGame" secondField="" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.MatchingSeriesWin.CardGame" firstField="CardGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MatchingSeriesWin.MahjongGame" firstField="MahjongGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MatchingSeriesWin.ChessGame" firstField="ChessGame" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MatchingSeriesWin.OthGame" firstField="OthGame" secondField="" desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.MatchingSeriesWin.LandlordSanrenddz" firstField="MemberMatch"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.MatchingSeriesWin.ChineseChess" firstField="MemberMatch"
+                  secondField="ChineseChess" desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.MatchingSeriesWin.MahjongHnxinxiang" firstField="MemberMatch"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.MatchingSeriesWin.MahjongLndalianqh" firstField="MemberMatch"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 游戏等级变化事件 -->
+    <Topic topicID="11" topic="TaskEvent.GameLevelChange" chanName="" desc="游戏等级变化事件">
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.GameLevelChange.LandlordSanrenddz" firstField="MemberMatch"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.GameLevelChange.ChineseChess" firstField="MemberMatch" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.GameLevelChange.MahjongHnxinxiang" firstField="MemberMatch"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.GameLevelChange.MahjongLndalianqh" firstField="MemberMatch"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 游戏奖杯变化事件 -->
+    <Topic topicID="12" topic="TaskEvent.GameCupChange" chanName="" desc="游戏奖杯变化事件">
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.GameLevelChange.LandlordSanrenddz" firstField="MemberMatch"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.GameLevelChange.ChineseChess" firstField="MemberMatch" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.GameLevelChange.MahjongHnxinxiang" firstField="MemberMatch"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.GameLevelChange.MahjongLndalianqh" firstField="MemberMatch"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 游戏时长事件 -->
+    <Topic topicID="13" topic="TaskEvent.GameTime" chanName="" desc="游戏时长事件">
+        <!-- 总时长 -->
+        <SubTopic subTopic="TaskEvent.GameTime.Total.AllGame" firstField="Total" secondField="AllGame" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Total.CardGame" firstField="Total" secondField="CardGame" desc=""/>
+        <SubTopic subTopic="TaskEvent.GameTime.Total.MahjongGame" firstField="Total" secondField="MahjongGame" desc=""/>
+        <SubTopic subTopic="TaskEvent.GameTime.Total.ChessGame" firstField="Total" secondField="ChessGame" desc=""/>
+        <SubTopic subTopic="TaskEvent.GameTime.Total.OthGame" firstField="Total" secondField="OthGame" desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.GameTime.Total.LandlordSanrenddz" firstField="Total"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Total.ChineseChess" firstField="Total" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Total.MahjongHnxinxiang" firstField="Total"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Total.MahjongLndalianqh" firstField="Total"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+
+        <!-- 每日时长 -->
+        <SubTopic subTopic="TaskEvent.GameTime.Daily.AllGame" firstField="Daily" secondField="AllGame" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Daily.CardGame" firstField="Daily" secondField="CardGame" desc=""/>
+        <SubTopic subTopic="TaskEvent.GameTime.Daily.MahjongGame" firstField="Daily" secondField="MahjongGame" desc=""/>
+        <SubTopic subTopic="TaskEvent.GameTime.Daily.ChessGame" firstField="Daily" secondField="ChessGame" desc=""/>
+        <SubTopic subTopic="TaskEvent.GameTime.Daily.OthGame" firstField="Daily" secondField="OthGame" desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.GameTime.Daily.LandlordSanrenddz" firstField="Daily"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Daily.ChineseChess" firstField="Daily" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Daily.MahjongHnxinxiang" firstField="Daily"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Daily.MahjongLndalianqh" firstField="Daily"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+
+        <!-- 每周时长 -->
+        <SubTopic subTopic="TaskEvent.GameTime.Weekly.AllGame" firstField="Weekly" secondField="AllGame" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Weekly.CardGame" firstField="Weekly" secondField="CardGame" desc=""/>
+        <SubTopic subTopic="TaskEvent.GameTime.Weekly.MahjongGame" firstField="Weekly" secondField="MahjongGame"
+                  desc=""/>
+        <SubTopic subTopic="TaskEvent.GameTime.Weekly.ChessGame" firstField="Weekly" secondField="ChessGame" desc=""/>
+        <SubTopic subTopic="TaskEvent.GameTime.Weekly.OthGame" firstField="Weekly" secondField="OthGame" desc=""/>
+        <!-- 具体子游戏 -->
+        <SubTopic subTopic="TaskEvent.GameTime.Weekly.LandlordSanrenddz" firstField="Weekly"
+                  secondField="LandlordSanrenddz" desc="三人斗地主"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Weekly.ChineseChess" firstField="Weekly" secondField="ChineseChess"
+                  desc="中国象棋"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Weekly.MahjongHnxinxiang" firstField="Weekly"
+                  secondField="MahjongHnxinxiang" desc="新乡麻将"/>
+        <SubTopic subTopic="TaskEvent.GameTime.Weekly.MahjongLndalianqh" firstField="Weekly"
+                  secondField="MahjongLndalianqh" desc="大连穷胡"/>
+    </Topic>
+
+    <!-- 邀请好友参加比赛事件 -->
+    <Topic topicID="14" topic="TaskEvent.InviteFriendsMatch" chanName="" desc="邀请好友参加比赛事件">
+        <SubTopic subTopic="TaskEvent.InviteFriendsMatch.AnyMatch" firstField="AnyMatch" secondField="" desc="全部游戏"/>
+        <SubTopic subTopic="TaskEvent.InviteFriendsMatch.CardGame" firstField="RegularMatch" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.InviteFriendsMatch.MahjongGame" firstField="CycleMatch" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.InviteFriendsMatch.ChessGame" firstField="SeriesMatch" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.InviteFriendsMatch.OthGame" firstField="MemberMatch" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 充值事件 -->
+    <Topic topicID="15" topic="TaskEvent.Charge" chanName="" desc="充值事件">
+        <SubTopic subTopic="TaskEvent.Charge.DiamondAndMember" firstField="DiamondAndMember" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.Charge.Diamond" firstField="Diamond" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.Charge.Member.Custom" firstField="Member" secondField="Custom" desc=""/>
+        <SubTopic subTopic="TaskEvent.Charge.Member.Custom" firstField="Member" secondField="MonthCard" desc=""/>
+        <SubTopic subTopic="TaskEvent.Charge.Member.Custom" firstField="Member" secondField="SeasonCard" desc=""/>
+        <SubTopic subTopic="TaskEvent.Charge.Member.Custom" firstField="Member" secondField="YearCard" desc=""/>
+    </Topic>
+
+    <!-- 每日分享事件 -->
+    <Topic topicID="16" topic="TaskEvent.DailyShare" chanName="" desc="每日分享事件">
+        <!-- 分享任意页 -->
+        <SubTopic subTopic="TaskEvent.DailyShare.AnyPage.AnyChannel" firstField="AnyPage" secondField="AnyChannel"
+                  desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.AnyPage.WeChatChannel" firstField="AnyPage" secondField="WeChatChannel"
+                  desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.AnyPage.WeChatFriendsChannel" firstField="AnyPage"
+                  secondField="WeChatFriendsChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.AnyPage.266FriendChannel" firstField="AnyPage"
+                  secondField="266FriendChannel" desc=""/>
+        <!-- 分享定时赛结果页 -->
+        <SubTopic subTopic="TaskEvent.DailyShare.RegularMatchRetPage.AnyChannel" firstField="RegularMatchRetPage"
+                  secondField="AnyChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.RegularMatchRetPage.WeChatChannel" firstField="RegularMatchRetPage"
+                  secondField="WeChatChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.RegularMatchRetPage.WeChatFriendsChannel"
+                  firstField="RegularMatchRetPage" secondField="WeChatFriendsChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.RegularMatchRetPage.266FriendChannel" firstField="RegularMatchRetPage"
+                  secondField="266FriendChannel" desc=""/>
+        <!-- 分享匹配赛结果页 -->
+        <SubTopic subTopic="TaskEvent.DailyShare.MatchingMatchRetPage.AnyChannel" firstField="MatchingMatchRetPage"
+                  secondField="AnyChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.MatchingMatchRetPage.WeChatChannel" firstField="MatchingMatchRetPage"
+                  secondField="WeChatChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.MatchingMatchRetPage.WeChatFriendsChannel"
+                  firstField="MatchingMatchRetPage" secondField="WeChatFriendsChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.MatchingMatchRetPage.266FriendChannel"
+                  firstField="MatchingMatchRetPage" secondField="266FriendChannel" desc=""/>
+        <!-- 分享抽奖活动页 -->
+        <SubTopic subTopic="TaskEvent.DailyShare.LotteryActivityPage.AnyChannel" firstField="LotteryActivityPage"
+                  secondField="AnyChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.LotteryActivityPage.WeChatChannel" firstField="LotteryActivityPage"
+                  secondField="WeChatChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.LotteryActivityPage.WeChatFriendsChannel"
+                  firstField="LotteryActivityPage" secondField="WeChatFriendsChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.LotteryActivityPage.266FriendChannel" firstField="LotteryActivityPage"
+                  secondField="266FriendChannel" desc=""/>
+        <!-- 分享游戏生涯页 -->
+        <SubTopic subTopic="TaskEvent.DailyShare.CareerPage.AnyChannel" firstField="CareerPage" secondField="AnyChannel"
+                  desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.CareerPage.WeChatChannel" firstField="CareerPage"
+                  secondField="WeChatChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.CareerPage.WeChatFriendsChannel" firstField="CareerPage"
+                  secondField="WeChatFriendsChannel" desc=""/>
+        <SubTopic subTopic="TaskEvent.DailyShare.CareerPage.266FriendChannel" firstField="CareerPage"
+                  secondField="266FriendChannel" desc=""/>
+    </Topic>
+
+    <!-- 在发现页评价事件 -->
+    <Topic topicID="17" topic="TaskEvent.DiscoverPage.Evaluation" chanName="" desc="在发现页评价事件">
+        <SubTopic subTopic="TaskEvent.DiscoverPage.Evaluation" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 使用互动道具事件 -->
+    <Topic topicID="18" topic="TaskEvent.UseInteractProp" chanName="" desc="使用互动道具事件">
+        <SubTopic subTopic="TaskEvent.UseInteractProp" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 会员等级变化事件 -->
+    <Topic topicID="19" topic="TaskEvent.MemberLevelChange" chanName="" desc="会员等级变化事件">
+        <SubTopic subTopic="TaskEvent.MemberLevelChange.AnyLevel" firstField="AnyLevel" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MemberLevelChange.BronzeLevel" firstField="BronzeLevel" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MemberLevelChange.SilverLevel" firstField="SilverLevel" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MemberLevelChange.GoldLevel" firstField="GoldLevel" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MemberLevelChange.PlatinumLevel" firstField="PlatinumLevel" secondField=""
+                  desc=""/>
+        <SubTopic subTopic="TaskEvent.MemberLevelChange.DiamondLevel" firstField="DiamondLevel" secondField="" desc=""/>
+        <SubTopic subTopic="TaskEvent.MemberLevelChange.SupremacyLevel" firstField="SupremacyLevel" secondField=""
+                  desc=""/>
+    </Topic>
+
+    <!-- 新增好友事件 -->
+    <Topic topicID="20" topic="TaskEvent.AddFriends" chanName="" desc="新增好友事件">
+        <SubTopic subTopic="TaskEvent.AddFriends" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 邀请好友并注册事件 -->
+    <Topic topicID="21" topic="TaskEvent.InviteAndRegister" chanName="" desc="邀请好友并注册事件">
+        <SubTopic subTopic="TaskEvent.InviteAndRegister" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 固定时间段登陆事件 -->
+    <Topic topicID="22" topic="TaskEvent.FixedTimeLogin" chanName="" desc="固定时间段登陆事件">
+        <SubTopic subTopic="TaskEvent.FixedTimeLogin" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 关注好友事件 -->
+    <Topic topicID="23" topic="TaskEvent.FollowFriends" chanName="" desc="关注好友事件">
+        <SubTopic subTopic="TaskEvent.FollowFriends" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 粉丝增涨事件 -->
+    <Topic topicID="24" topic="TaskEvent.FollowerIncrease" chanName="" desc="粉丝增涨事件">
+        <SubTopic subTopic="TaskEvent.FollowerIncrease" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 购买道具事件 -->
+    <Topic topicID="25" topic="TaskEvent.BuyProp" chanName="" desc="购买道具事件">
+        <SubTopic subTopic="TaskEvent.BuyProp.AllProp" firstField="AllProp" secondField="" desc=""/>
+        <!-- 购买的具体道具 -->
+        <SubTopic subTopic="TaskEvent.BuyProp.XXX" firstField="XXX" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 兑换奖品事件 -->
+    <Topic topicID="26" topic="TaskEvent.Exchange" chanName="" desc="兑换奖品事件">
+        <SubTopic subTopic="TaskEvent.Exchange.AllAward" firstField="AllAward" secondField="" desc=""/>
+        <!-- 兑换的具体奖品 -->
+        <SubTopic subTopic="TaskEvent.Exchange.XXX" firstField="XXX" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 完成心愿事件 -->
+    <Topic topicID="27" topic="TaskEvent.FinishWish" chanName="" desc="完成心愿事件">
+        <SubTopic subTopic="TaskEvent.FinishWish.AllAward" firstField="AllAward" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 完成手机绑定事件 -->
+    <Topic topicID="28" topic="TaskEvent.BindMobile" chanName="" desc="完成手机绑定事件">
+        <SubTopic subTopic="TaskEvent.BindMobile" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 完成实名认证事件 -->
+    <Topic topicID="29" topic="TaskEvent.FinishRealNameAuth" chanName="" desc="完成实名认证事件">
+        <SubTopic subTopic="TaskEvent.FinishRealNameAuth" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 完善个人资料页事件 -->
+    <Topic topicID="30" topic="TaskEvent.OptimizePersonalInfo" chanName="" desc="完善个人资料页事件">
+        <SubTopic subTopic="TaskEvent.OptimizePersonalInfo" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 填写收货地址事件 -->
+    <Topic topicID="31" topic="TaskEvent.ProvidePostAddress" chanName="" desc="填写收货地址事件">
+        <SubTopic subTopic="TaskEvent.ProvidePostAddress" firstField="" secondField="" desc=""/>
+    </Topic>
+
+    <!-- 累计消耗钻石事件 -->
+    <Topic topicID="32" topic="TaskEvent.CumulativeExpendDiamond" chanName="" desc="累计消耗钻石事件">
+        <SubTopic subTopic="TaskEvent.CumulativeExpendDiamond" firstField="" secondField="" desc=""/>
+    </Topic>
+</Event>
