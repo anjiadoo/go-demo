@@ -1,67 +1,89 @@
 package rbtree
 
 import (
+	"fmt"
 	"log"
+	"math/rand"
 	"testing"
 )
 
-func TestLeftRotate(t *testing.T) {
-	var i10 Int = 10
-	var i12 Int = 12
+func TestLeverOrder(t *testing.T) {
+	tree := New()
+	vals := rand.Perm(20)
 
-	rbtree := New()
-	x := &node{rbtree.nilNode, rbtree.nilNode, rbtree.nilNode, BLACK, i10}
-	rbtree.root = x
-	y := &node{rbtree.root.rchild, rbtree.nilNode, rbtree.nilNode, RED, i12}
-	rbtree.root.rchild = y
+	fmt.Println(vals)
+	for i := 0; i < len(vals); i++ {
+		tree.ReplaceOrInsert(Int(vals[i]))
+	}
 
-	log.Println("root : ", rbtree.root)
-	log.Println("left : ", rbtree.root.lchild)
-	log.Println("right : ", rbtree.root.rchild)
-
-	rbtree.leftRotate(rbtree.root)
-
-	log.Println("root : ", rbtree.root)
-	log.Println("left : ", rbtree.root.lchild)
-	log.Println("right : ", rbtree.root.rchild)
-
+	log.Println("rbtree counts : ", tree.GetNodeCnt())
+	LeverOrder(tree.GetRootNode())
+	//PreOrder(tree.GetRootNode())
 }
 
-func TestRightRotate(t *testing.T) {
-	var i10 Int = 10
-	var i12 Int = 12
 
-	rbtree := New()
-	x := &node{rbtree.nilNode, rbtree.nilNode, rbtree.nilNode, BLACK, i10}
-	rbtree.root = x
-	y := &node{rbtree.root.rchild, rbtree.nilNode, rbtree.nilNode, RED, i12}
-	rbtree.root.rchild = y
-
-	log.Println("root : ", rbtree.root)
-	log.Println("left : ", rbtree.root.lchild)
-	log.Println("right : ", rbtree.root.rchild)
-
-	rbtree.rightRotate(rbtree.root)
-
-	log.Println("root : ", rbtree.root)
-	log.Println("left : ", rbtree.root.lchild)
-	log.Println("right : ", rbtree.root.rchild)
-
-}
-
-func TestReplaceOrInsertT(t *testing.T) {
-	rbtree := New()
-
-	rbtree.ReplaceOrInsert(&node{rbtree.nilNode, rbtree.nilNode, rbtree.nilNode, RED, Int(10)})
-	rbtree.ReplaceOrInsert(&node{rbtree.nilNode, rbtree.nilNode, rbtree.nilNode, RED, Int(9)})
-	rbtree.ReplaceOrInsert(&node{rbtree.nilNode, rbtree.nilNode, rbtree.nilNode, RED, Int(8)})
-	rbtree.ReplaceOrInsert(&node{rbtree.nilNode, rbtree.nilNode, rbtree.nilNode, RED, Int(6)})
-	rbtree.ReplaceOrInsert(&node{rbtree.nilNode, rbtree.nilNode, rbtree.nilNode, RED, Int(7)})
-
-	log.Println("rbtree counts : ", rbtree.count)
-
-	log.Println("------ ", rbtree.root.Item)
-	log.Println("----", rbtree.root.lchild.Item, "---", rbtree.root.rchild.Item)
-	log.Println("--", rbtree.root.lchild.lchild.Item, "-", rbtree.root.lchild.rchild.Item)
-
-}
+//import (
+//	"log"
+//	"testing"
+//)
+//
+//func TestLeftRotate(t *testing.T) {
+//	var i10 Int = 10
+//	var i12 Int = 12
+//
+//	rbtree := New()
+//	x := &node{nilNode, nilNode, nilNode, BLACK, i10}
+//	root = x
+//	y := &node{root.rchild, nilNode, nilNode, RED, i12}
+//	root.rchild = y
+//
+//	log.Println("root : ", root)
+//	log.Println("left : ", root.lchild)
+//	log.Println("right : ", root.rchild)
+//
+//	leftRotate(root)
+//
+//	log.Println("root : ", root)
+//	log.Println("left : ", root.lchild)
+//	log.Println("right : ", root.rchild)
+//
+//}
+//
+//func TestRightRotate(t *testing.T) {
+//	var i10 Int = 10
+//	var i12 Int = 12
+//
+//	rbtree := New()
+//	x := &node{nilNode, nilNode, nilNode, BLACK, i10}
+//	root = x
+//	y := &node{root.rchild, nilNode, nilNode, RED, i12}
+//	root.rchild = y
+//
+//	log.Println("root : ", root)
+//	log.Println("left : ", root.lchild)
+//	log.Println("right : ", root.rchild)
+//
+//	rightRotate(root)
+//
+//	log.Println("root : ", root)
+//	log.Println("left : ", root.lchild)
+//	log.Println("right : ", root.rchild)
+//
+//}
+//
+//func TestReplaceOrInsertT(t *testing.T) {
+//	rbtree := New()
+//
+//	ReplaceOrInsert(&node{nilNode, nilNode, nilNode, RED, Int(10)})
+//	ReplaceOrInsert(&node{nilNode, nilNode, nilNode, RED, Int(9)})
+//	ReplaceOrInsert(&node{nilNode, nilNode, nilNode, RED, Int(8)})
+//	ReplaceOrInsert(&node{nilNode, nilNode, nilNode, RED, Int(6)})
+//	ReplaceOrInsert(&node{nilNode, nilNode, nilNode, RED, Int(7)})
+//
+//	log.Println("rbtree counts : ", count)
+//
+//	log.Println("------ ", root.Item)
+//	log.Println("----", root.lchild.Item, "---", root.rchild.Item)
+//	log.Println("--", root.lchild.lchild.Item, "-", root.lchild.rchild.Item)
+//
+//}
