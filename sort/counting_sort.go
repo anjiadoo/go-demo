@@ -1,33 +1,62 @@
 package sort
 
-import "math"
-
-func CountingSort(a []int, n int) {
-	if n <= 1 {
+func CountingSort(arr []int) {
+	length := len(arr)
+	if length <= 1 {
 		return
 	}
 
-	var max int = math.MinInt32
-	for i := range a {
-		if a[i] > max {
-			max = a[i]
+	max := 0
+	for i := range arr {
+		if arr[i] > max {
+			max = arr[i]
 		}
 	}
 
-	c := make([]int, max+1)
-	for i := range a {
-		c[a[i]]++
+	tmp := make([]int, max+1)
+	for i := range arr {
+		tmp[arr[i]]++
 	}
 	for i := 1; i <= max; i++ {
-		c[i] += c[i-1]
+		tmp[i] += tmp[i-1]
 	}
 
-	r := make([]int, n)
-	for i := n - 1; i >= 0; i-- {
-		index := c[a[i]] - 1
-		r[index] = a[i]
-		c[a[i]]--
+	ret := make([]int, length)
+	for i := length - 1; i >= 0; i-- {
+		index := tmp[arr[i]] - 1
+		ret[index] = arr[i]
+		tmp[arr[i]]--
+	}
+	copy(arr, ret)
+}
+
+func countingSort(arr []int) {
+	length := len(arr)
+	if length <= 1 {
+		return
 	}
 
-	copy(a, r)
+	max := 0
+	for i := range arr {
+		if arr[i] > max {
+			max = arr[i]
+		}
+	}
+
+	tmp := make([]int, max+1)
+	for i := range arr {
+		tmp[arr[i]]++
+	}
+	// 顺序求和
+	for i := 1; i <= max; i++ {
+		tmp[i] += tmp[i-1]
+	}
+
+	ret := make([]int, length)
+	for i := length - 1; i >= 0; i-- {
+		idx := tmp[arr[i]] - 1
+		ret[idx] = arr[i]
+		tmp[arr[i]]--
+	}
+	copy(arr, ret)
 }

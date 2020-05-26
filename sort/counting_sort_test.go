@@ -8,13 +8,13 @@ import (
 func TestCountingSort(t *testing.T) {
 	arr := rand.Perm(10)
 	t.Log(arr)
-	CountingSort(arr, len(arr))
+	CountingSort(arr)
 	t.Log(arr)
 
 	t.Log(" ------------------- ")
 
 	arr = rand.Perm(10)
 	t.Log(arr)
-	CountingSort(arr, len(arr))
+	countingSort(arr)
 	t.Log(arr)
 }

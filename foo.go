@@ -20,17 +20,6 @@ import (
 )
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var (
-	ErrAssertFail           = errors.New("Type Assert Failed.")
-	ErrNotFoundTasker       = errors.New("Not Found Tasker")
-	ErrNotFoundTaskItem     = errors.New("Not Found Task Item")
-	ErrNotDoneTaskItem      = errors.New("Not Done Task Item")
-	ErrGrantTypeInvalid     = errors.New("Award Grant Type Invalid")
-	ErrAwardIsNone          = errors.New("Award Is None")
-	ErrNotFoundAwardPool    = errors.New("Not Found Award Pool")
-	ErrNonArriveGrantTime   = errors.New("Non Arrive Grant Time")
-	ErrAwardAlreadyAcquired = errors.New("Award Already Aquired")
-)
 
 func getAwardAcceptTime() time.Time {
 	year, monty, day := time.Now().Date()

@@ -2,34 +2,22 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"os/signal"
-	"sync"
-	"time"
+	"math"
 )
 
 func main() {
-	c := sync.NewCond(&sync.Mutex{})
-	for i := 0; i < 10; i++ {
-		go listen(c)
+	var a, b uint32
+	_, err := fmt.Scanf("%d %d", &a, &b)
+	if err != nil {
+		return
 	}
-	time.Sleep(1 * time.Second)
-	go broadcast(c)
+	if a < 1 || b > 200 || a > b {
+		return
+	}
 
-	ch := make(chan os.Signal, 1)
-	signal.Notify(ch, os.Interrupt)
-	<-ch
-}
-
-func broadcast(c *sync.Cond) {
-	c.L.Lock()
-	c.Broadcast()
-	c.L.Unlock()
-}
-
-func listen(c *sync.Cond) {
-	c.L.Lock()
-	c.Wait()
-	fmt.Println("listen")
-	c.L.Unlock()
+	var sum uint32
+	for i := a; i <= b; i++ {
+		sum += uint32(math.Pow(float64(i), 3))
+	}
+	fmt.Println(sum)
 }

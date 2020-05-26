@@ -18,6 +18,7 @@ func BucketSort(array []int) {
 	if length <= 1 {
 		return
 	}
+
 	maxElement := getMaxElement(array)
 	buckets := make([][]int, length) // 二维切片
 
@@ -43,18 +44,18 @@ func BucketSortSimple(source []int) {
 	if len(source) <= 1 {
 		return
 	}
+
 	array := make([]int, getMaxElement(source)+1)
 	for i := 0; i < len(source); i++ {
 		array[source[i]] ++
 	}
-	//fmt.Println(array)
-	c := make([]int, 0)
+
+	arr := make([]int, 0)
 	for i := 0; i < len(array); i++ {
 		for array[i] != 0 {
-			c = append(c, i)
+			arr = append(arr, i)
 			array[i] --
 		}
 	}
-	copy(source, c)
-
+	copy(source, arr)
 }
