@@ -1,23 +1,52 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"math"
+	"os"
+	"unicode"
 )
 
 func main() {
-	var a, b uint32
-	_, err := fmt.Scanf("%d %d", &a, &b)
-	if err != nil {
-		return
-	}
-	if a < 1 || b > 200 || a > b {
-		return
-	}
+	scanner := bufio.NewScanner(os.Stdin)
 
-	var sum uint32
-	for i := a; i <= b; i++ {
-		sum += uint32(math.Pow(float64(i), 3))
+	for {
+		scanner.Scan()
+		str := scanner.Text()
+		if len(str) == 0 {
+			break
+		}
+		strArr := []rune(str)
+
+		var rec [26][]rune
+		for _, v := range strArr {
+			if unicode.IsLetter(v) {
+				rec[unicode.ToLower(v)-'a'] = append(rec[unicode.ToLower(v)-'a'], v)
+			}
+		}
+
+		var tmpRuneArr []rune
+		for i := 0; i < 26; i++ {
+			if len(rec[i]) != 0 {
+				for _, v := range rec[i] {
+					tmpRuneArr = append(tmpRuneArr, v)
+				}
+			}
+		}
+
+		index := 0
+		if tmpRuneArr != nil {
+			for i, v := range str {
+				if unicode.IsLetter(v) {
+					strArr[i] = tmpRuneArr[index]
+					index++
+					if index > len(tmpRuneArr) {
+						break
+					}
+				}
+			}
+		}
+
+		fmt.Println(string(strArr))
 	}
-	fmt.Println(sum)
 }
