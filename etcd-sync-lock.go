@@ -19,7 +19,7 @@ const (
 	expireAction = "expire"
 )
 
-// A Mutex is a mutual exclusion lock which is distributed across a cluster.
+// a mutex is a mutual exclusion lock which is distributed across a cluster.
 type Mutex struct {
 	key    string
 	id     string // The identity of the caller
@@ -136,7 +136,6 @@ func (m *Mutex) lock() (err error) {
 			return nil
 		}
 	}
-
 }
 
 // Unlock unlocks m.
@@ -178,7 +177,7 @@ func (m *Mutex) SetDebugLogger(w io.Writer) {
 
 func main() {
 	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
-	m := New("/etcdsync", 123, []string{"http://127.0.0.1:2379"})
+	m := New("/etcd-sync", 123, []string{"http://127.0.0.1:2379"})
 	if m == nil {
 		log.Printf("etcdsync.NewMutex failed")
 	}
