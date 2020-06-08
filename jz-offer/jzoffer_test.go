@@ -22,3 +22,8 @@ func TestMyPow(t *testing.T) {
 func TestPrintNumbers(t *testing.T) {
 	printNumbers(2)
 }
+
+func TestExchange(t *testing.T) {
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	t.Log(exchange1(arr))
+}
