@@ -8,6 +8,6 @@ import (
 func TestQuickSort(t *testing.T) {
 	arr := rand.Perm(10)
 	t.Log(arr)
-	QuickSort(arr)
+	quickSort(arr)
 	t.Log(arr)
 }

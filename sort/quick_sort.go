@@ -33,3 +33,32 @@ func partition(arr []int, start, end int) int {
 	arr[point], arr[end] = arr[end], arr[point]
 	return point
 }
+
+func quickSort(arr []int) {
+	_separateSort(arr, 0, len(arr)-1)
+}
+
+func _separateSort(arr []int, start, end int) {
+	if start >= end {
+		return
+	}
+	mid := _partition(arr, start, end)
+	_separateSort(arr, start, mid-1)
+	_separateSort(arr, mid+1, end)
+}
+
+func _partition(arr []int, start, end int) int {
+	pivot := arr[end]
+
+	var point = start
+	for j := start; j < end; j++ {
+		if arr[j] < pivot {
+			if point != j {
+				arr[j], arr[point] = arr[point], arr[j]
+			}
+			point++
+		}
+	}
+	arr[point], arr[end] = arr[end], arr[point]
+	return point
+}

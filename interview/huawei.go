@@ -1,4 +1,4 @@
-package palindrome
+package interview
 
 func palindrome(str string) bool {
 	if len(str) == 0 || len(str) == 1 {
